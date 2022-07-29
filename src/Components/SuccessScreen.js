@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export default function SuccessScreen({ name, cpf, selected, seats }) {
-  console.log(name, cpf, selected, seats);
   return (
     <Wraper>
       <h1>Pedido Feito com Sucesso!</h1>

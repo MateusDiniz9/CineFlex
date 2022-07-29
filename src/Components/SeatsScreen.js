@@ -19,6 +19,9 @@ export default function SeatsScreen({
   const { idSessao } = useParams();
   let navigate = useNavigate();
   useEffect(() => {
+    setSelected([]);
+    setName("");
+    setCpf("");
     const promise = axios.get(
       `https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${idSessao}/seats`
     );
@@ -29,11 +32,16 @@ export default function SeatsScreen({
 
   function sendToAPI(event) {
     event.preventDefault();
+    let form = {
+      id: selected,
+      name: name,
+      cpf: cpf,
+    };
     const request = axios.post(
       "https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",
-      { ids: selected, name: name, cpf: cpf }
+      form
     );
-    request.then((res) => console.log(res));
+    request.then();
     navigate("/sucesso");
   }
 
