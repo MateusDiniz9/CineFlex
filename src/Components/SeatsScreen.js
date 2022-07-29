@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import Seats from "./Seats";
 
@@ -17,7 +17,7 @@ export default function SeatsScreen({
   setSeats,
 }) {
   const { idSessao } = useParams();
-
+  let navigate = useNavigate();
   useEffect(() => {
     const promise = axios.get(
       `https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${idSessao}/seats`
@@ -33,6 +33,8 @@ export default function SeatsScreen({
       "https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",
       { ids: selected, name: name, cpf: cpf }
     );
+    request.then((res) => console.log(res));
+    navigate("/sucesso");
   }
 
   return (
@@ -65,9 +67,8 @@ export default function SeatsScreen({
                 placeholder="Digite seu Cpf..."
                 required
               />
-              <Link to="/sucesso">
-                <button type="submit">Reservar Assento(s)</button>
-              </Link>
+
+              <button type="submit">Reservar Assento(s)</button>
             </Forms>
           </form>
           <Footer

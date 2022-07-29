@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function SuccessScreen({ name, cpf, selected, seats }) {
   console.log(name, cpf, selected, seats);
@@ -19,7 +20,9 @@ export default function SuccessScreen({ name, cpf, selected, seats }) {
         <h3>Nome: {name}</h3>
         <h3>CPF: {cpf}</h3>
       </div>
-      <button>Voltar para Home</button>
+      <Link to="/">
+        <button>Voltar para Home</button>
+      </Link>
     </Wraper>
   );
 }
@@ -33,7 +36,7 @@ const Wraper = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    margin-right: 120px;
+    margin-right: 100px;
   }
   h1 {
     width: 170px;
