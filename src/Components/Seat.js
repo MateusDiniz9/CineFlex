@@ -8,13 +8,13 @@ export default function Seat({ seat, selected, setSelected }) {
   seat = { ...seat, clicked };
 
   function selectSeat() {
-    setSelected([...selected, seat.name]);
+    setSelected([...selected, seat.id]);
     setColor1("#8DD7CF");
     setBorder1("#1AAE9E");
     setClicked(true);
   }
   function unselectSeat() {
-    let ind = selected.indexOf(seat.name);
+    let ind = selected.indexOf(seat.id);
     selected.splice(ind, 1);
     setColor1("#C3CFD9");
     setBorder1("#7B8B99");
