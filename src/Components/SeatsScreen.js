@@ -1,8 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import Seats from "./Seats";
 
@@ -18,6 +17,7 @@ export default function SeatsScreen({
 }) {
   const { idSessao } = useParams();
   let navigate = useNavigate();
+
   useEffect(() => {
     setSelected([]);
     setName("");
@@ -33,7 +33,7 @@ export default function SeatsScreen({
   function sendToAPI(event) {
     event.preventDefault();
     let form = {
-      id: selected,
+      ids: selected,
       name: name,
       cpf: cpf,
     };
@@ -41,6 +41,7 @@ export default function SeatsScreen({
       "https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",
       form
     );
+
     request.then();
     navigate("/sucesso");
   }
